@@ -1,0 +1,535 @@
+Hibernate OGM Changelog
+=======================
+
+4.1.0.Beta8 (30-10-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-615] - Avoid re-read prior to update/deletion if not required
+
+** Bug
+    * [OGM-612] - Error when entity has ObjectID and Embeddable in MongoDB
+    * [OGM-624] - EmbeddableTest fails with CouchDB and JDK 8
+    * [OGM-628] - Documentation build fails with JDK 8
+    * [OGM-629] - CouchDB dialect fails to persist element collections in nested embeddables
+    * [OGM-630] - The test is OptimisticLockingTest#updatingEntityUsingOldVersionCausesExceptionUsingAtomicFindAndUpdate fails on CI
+
+** Improvement
+    * [OGM-396] - Add test for optimistic locking
+    * [OGM-469] - Fetch embedded associations when getting the hosting tuple in MongoDB
+    * [OGM-536] - Provide a way to keep a reference to the store-specific representation of entities
+    * [OGM-591] - Persist OneToOne associations as singular attribute in MongoDB
+    * [OGM-619] - Update Arquillian and remove superfluous version configuration
+    * [OGM-625] - Avoid datastore access during association creation in MongoDB
+
+
+4.1.0.Beta7 (30-09-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-324] - Convert JP-QL queries on properties of @Embeddable objects to MongoDB queries
+
+** Bug
+    * [OGM-587] - Saving an entity with an embedded document containing a list fails in mongodb with com.mongodb.MongoException$DuplicateKey error
+
+** Improvement
+    * [OGM-436] - Use store-assigned ids for GenerationType IDENTITY in MongoDB
+    * [OGM-521] - Investigate more natural @OneToOne association mappings for Neo4j
+    * [OGM-522] - Cache and re-use queries for CRUD operations in Neo4j
+    * [OGM-547] - Ensure uniqueness of id per entity type on Neo4j
+    * [OGM-582] - Update "Getting started" section to fit for Neo4j
+    * [OGM-592] - Move some constant data from AssociationKey to AssociationKeyMetadata
+    * [OGM-596] - Integration test should download EAP from a repository
+    * [OGM-600] - Avoid exponential growth of required grid dialect delegator classes when adding further facet interfaces
+    * [OGM-602] - Configure Maven Clirr plug-in for tracking API/SPI changes
+    * [OGM-607] - Remove GridDialect#createTupleAssociation()
+    * [OGM-611] - Neo4jDialect#createTuple() should not touch the DB
+
+** New Feature
+    * [OGM-454] - Reorganize OGM packages into proper APIs, SPIs and impls
+    * [OGM-526] - Add support for ObjectId in MongoDB
+
+** Task
+    * [OGM-373] - Add integration test case module for Neo4j
+    * [OGM-458] - Automate the release process
+    * [OGM-595] - Set USE_NEW_ID_GENERATOR_MAPPINGS in OgmConfiguration
+    * [OGM-610] - Rename GridDialect#update* methods
+
+
+4.1.0.Beta6 (08-08-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-307] - Maintain one OgmQueryLoader per query plan
+
+** Bug
+    * [OGM-424] - Queries don't return entries inserted in the current session
+    * [OGM-557] - Embedded classes are not initialized when using query in MongoDB
+    * [OGM-558] - Remove jboss early access repository from the settings-example.xml
+    * [OGM-590] - NPE when accessing nested embeddedable on MongoDB
+
+** Improvement
+    * [OGM-414] - Hook our own native query parser for parameter substitution
+    * [OGM-528] - Remove custom native query parameter metadata cache
+    * [OGM-548] - Avoid redundant association properties in Neo4j
+    * [OGM-569] - Pass JP-QL parameters as actual parameters to Neo4j backend
+    * [OGM-575] - Don't expose mutator methods on AssociationContext to grid dialects
+    * [OGM-578] - Avoid unnecessary object creation upon log.trace
+
+** New Feature
+    * [OGM-344] - Support polymorphic queries on MongoDB
+    * [OGM-574] - Provide Bill-of-Materials POM with matching versions of OGM dependencies and components
+
+** Task
+    * [OGM-369] - Re-enable test disabled due to ORM version update
+    * [OGM-541] - Cache JP-QL/HQL query plans
+    * [OGM-573] - Upgrade to Hibernate ORM 4.3.6.Final
+    * [OGM-586] - Upgrade to Neo4j 2.1.3
+
+
+4.1.0.Beta5 (09-07-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-489] - Create a Neo4j query parser
+
+** Bug
+    * [OGM-264] - Should sequence and nextValue use the ORM column names instead of ad-hoc names
+    * [OGM-552] - Update links in the how-to-release.md file
+    * [OGM-553] - Add missing dependencies in the Neo4j jboss module
+    * [OGM-554] - Wrong resource root in hibernate-ogm-modules-eap6-4.1.0.Beta4
+    * [OGM-562] - Query projection ignores null columns and is dependent on the tuple column orders
+    * [OGM-568] - Make Animal Sniffer and JavaDoc work with Java 8
+
+** Improvement
+    * [OGM-445] - Ensure that StartStoppable implementations get passed a completely set up session factory
+    * [OGM-481] - Use more concise format for representing element collections of basic types
+    * [OGM-563] - Improve cleanup of MapDatastoreProvider and explain lock shortcomings
+    * [OGM-567] - Inject version number in Version from Maven plugin
+
+** New Feature
+    * [OGM-518] - Integrate SORT operator for the Neo4j query parser backend
+
+** Task
+    * [OGM-372] - Support Neo4j queries
+    * [OGM-572] - Remove dependency to CypherDSL
+
+
+4.1.0.Beta4 (12-06-2014)
+-------------------------
+
+** Bug
+    * [OGM-549] - Element collections are not properly persisted in Neo4j
+
+** Improvement
+    * [OGM-513] - Re-consider how native queries are expressed for MongoDB
+    * [OGM-543] - Provide public constants for datastore provider short names
+    * [OGM-551] - OgmSessionFactory#openSession() should return OgmSession
+
+** Task
+    * [OGM-274] - Fix BuiltinTypeTest#testStringMappedTypeSerialisation()
+    * [OGM-285] - Integration tests should test the deployment using jboss-deployment-structure.xml
+    * [OGM-368] - In Neo4j use only one relationship for bidirectional association
+    * [OGM-486] - Add in the documentation a textual representation of how elements are saved in Neo4j
+    * [OGM-529] - Create sequences at startup in Neo4j
+    * [OGM-532] - Create a file in the project that explains how to release
+
+
+4.1.0.Beta3 (22-05-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-490] - Execute native Cypher queries in Neo4j
+
+** Bug
+    * [OGM-500] - The documentation does not contain the link to the datastores configuration
+    * [OGM-503] - Update to ordered embedded collection element causes insert in MongoDB
+
+** Improvement
+    * [OGM-524] - Log meaningful error in case of unmappable types
+    * [OGM-527] - Don't set up session factory if a test is skipped on the current dialect
+
+** New Feature
+    * [OGM-487] - Integrate SORT operator for the HQL/Lucene query parser
+    * [OGM-494] - Integrate SORT operator for the MongoDB query parser backend
+    * [OGM-512] - Add support for Query#setMaxRows() and setFirstResult()
+
+** Task
+    * [OGM-367] - Use Neo4j labels to represent the role of a node
+    * [OGM-377] - GridDialect#executeBackendQuery should return a Closeable iterator
+    * [OGM-406] - Upgrade to Neo4j 2.0.1
+    * [OGM-480] - Support parameters in native queries if the store supports it
+    * [OGM-498] - @GeneratedValue(strategy = GenerationType.AUTO) does not work when the session is used
+    * [OGM-502] - Update maven-release-plugin configuration
+    * [OGM-509] - Use simplified license header in source files
+
+4.1.0.Beta2 (16-04-2014)
+-------------------------
+
+** Bug
+    * [OGM-251] - Collection of elements get wrong key and value column names
+    * [OGM-346] - Queries selecting entire entity shouldn't return a list of arrays
+    * [OGM-417] - Failure executing native query on MongoDB
+    * [OGM-473] - Don't share mutable state in TupleContext between threads
+    * [OGM-475] - Wrong property used in the configuration of Neo4j tests
+    * [OGM-476] - Wrong javadoc in InfinispanConfiguration
+    * [OGM-483] - Allow to use element collections of embeddable types with neo4j
+    * [OGM-491] - List read fails when JPA "OrderColumn" is used
+    * [OGM-493] - Can not update a JPA collection annotated with @OrderColumn
+    * [OGM-496] - Exception when using MongoDB queries in container-managed transaction
+    * [OGM-497] - OGM doesn't work with secured MongoDB
+
+** Improvement
+    * [OGM-426] - Provide a way for marking a test as not dialect dependent
+    * [OGM-428] - Investigate means of tying global options and corresponding property more closely together
+    * [OGM-429] - Use OptionsContainer.EMPTY placeholder for elements without options
+    * [OGM-468] - Cache the options effectively applying for an entity or property
+    * [OGM-471] - Avoid creation of associations prior to removal
+    * [OGM-482] - Provide module for JBoss EAP
+
+** New Feature
+    * [OGM-342] - Make MongoDB write concern configurable per entity and property
+
+** Task
+    * [OGM-303] - Tests fail on Embedded MongoDB when on Windows
+    * [OGM-420] - Add Read Preference option for MongoDB
+    * [OGM-446] - Change OgmEntityManager package
+    * [OGM-447] - Use WildFly 8.0.0.Final for integration tests and as module baseline
+    * [OGM-448] - Clean up OGM's Wiki section
+    * [OGM-467] - Verify that the testsuite does not leak connections to MongoDB
+    * [OGM-472] - Add tests for JP-QL and native queries to integration tests
+    * [OGM-501] - Upgrade maven release plugin to 2.5
+
+
+4.1.0.Beta1 (19-02-2014)
+-------------------------
+
+** Sub-task
+    * [OGM-384] - Add documentation for CouchDB dialect
+
+** Bug
+    * [OGM-387] - Add integration test for an app deploying both an ORM PU and an OGM PU
+    * [OGM-394] - Avoid test failures to fail other tests as well
+    * [OGM-397] - Correctly access "tuplesByTableName" CouchDB view
+    * [OGM-413] - Make sure OGM specific property settings are set and kept on
+    * [OGM-416] - Stackoverflow when using an OGM and ORM PU at the same time
+    * [OGM-440] - Remove unused naming strategy setting in OgmIntegrator
+    * [OGM-443] - Updates operations in Ehcache dialect are only applied in memory
+
+** Improvement
+    * [OGM-37] - Use externalizers for serializable types in Infinispan
+    * [OGM-107] - Collect properties and regroup them under a Environment interface or something equivalent
+    * [OGM-200] - Rethink packaging for datastores
+    * [OGM-232] - Introduce a settings interface to host configuration names constants
+    * [OGM-292] - Reorganize OGM packages for datastores
+    * [OGM-351] - Provide typed APIs for putting and retrieving multi-valued and unique options
+    * [OGM-378] - Make dependency to hibernate-search-orm mandatory for Infinispan module
+    * [OGM-381] - Add Neo4j dependencies only once to distribution file
+    * [OGM-391] - Avoid fetching complete document just for deletion with CouchDB backend
+    * [OGM-393] - Split notion of option and option value
+    * [OGM-398] - Create separate design documents for production and test views in CouchDB
+    * [OGM-400] - Store bytes as numeric value in CouchDB, calendar/date as ISO8601 strings
+    * [OGM-402] - Only skip CouchDB tests instead of complete module when no server is configured
+    * [OGM-403] - Remove unnecessary repos and dependency
+    * [OGM-408] - Align classname hosting each datastore provider properties names
+    * [OGM-410] - Use common ConfigurationPropertyReader for accessing configuration values
+    * [OGM-415] - Support authenticated access to CouchDB
+    * [OGM-422] - Adapt CheckStyle rules to allow imports only used in JavaDoc
+    * [OGM-425] - Documentation updates for 4.1.0.Beta1 release
+    * [OGM-432] - Never store @ElementCollection members in association documents
+    * [OGM-435] - Make key objects not Serializable
+    * [OGM-444] - Align name and access semantics of properties representing external configuration files
+
+** New Feature
+    * [OGM-14] - Support TypedQuery in OgmEntityManager
+    * [OGM-15] - Support named queries
+    * [OGM-21] - Support EntityManager#createQuery(String)
+    * [OGM-207] - Make MongoDB's association storage strategy available per association
+    * [OGM-262] - Support CouchDB database
+    * [OGM-363] - Add support for @NamedNativeQuery
+    * [OGM-389] - Support entity embedded mode for associations with CouchDB backend
+
+** Task
+    * [OGM-206] - Rename PropertyMetadataProvider and local variables
+    * [OGM-310] - Upgrade Hibernate ORM to 4.3.0.Beta4
+    * [OGM-340] - Create integration tests for Wildfly
+    * [OGM-352] - Describe option configuration mechanism in the reference documentation
+    * [OGM-361] - Remove the started flag from InfinispanDatastoreProvider
+    * [OGM-362] - Update to Infinspan 6.x
+    * [OGM-375] - Upgrade Hibernate ORM to 4.3.0.Final
+    * [OGM-380] - Javadoc improvement for Option class
+    * [OGM-385] - Use more natural format for CouchDB documents
+    * [OGM-392] - Make CouchDB _rev attribute usable in entities
+    * [OGM-395] - Remove reference to build property buildDocs
+    * [OGM-399] - Upgrade to Infinispan 6.0.0.Final
+    * [OGM-404] - BuiltInTypeTest sometimes fails because of the TimeZone
+    * [OGM-418] - Upgrade to WildFly 8.0.0.CR1
+    * [OGM-423] - Upgrade to Hibernate Search 4.5.0.CR1 and related HQL Parser 1.0.0.Alpha6
+    * [OGM-430] - Go for version 4.1 after the move to JPA 2.1
+    * [OGM-438] - Introduce a helper to test Infinispan in clustered mode
+    * [OGM-459] - Don't deploy distribution (tar.gz, zip) to Nexus
+
+
+4.0.0.Beta4 (25-10-2013)
+-------------------------
+
+** Bug
+    * [OGM-345] - Use JavaBeans property names in OptionsContext
+
+** New Feature
+    * [OGM-182] - Support Embedded Neo4j as Datastore
+    * [OGM-208] - Create facility for OGM core and Dialects to receive custom metadata (annotation, programmatic) associated to entities, properties or associations
+    * [OGM-348] - Provide type-safe API for accessing options
+
+** Task
+    * [OGM-248] - Drop the hibernate-ogm prefix for the module directories
+    * [OGM-336] - Adapt to changed parser API
+    * [OGM-337] - The mapping context should be cached
+    * [OGM-338] - A User must be able to access the mapping context
+    * [OGM-341] - Update JavaDoc CSS and enforce JDK 7 for builds
+    * [OGM-350] - Use animalsniffer plugin to keep Java6 compatibility
+    * [OGM-354] - Disable usage of shadow services from ORM in our testsuite
+    * [OGM-358] - Add direct native backend query execution (e.g. MongoQL)
+    * [OGM-371] - Add Neo4j dependencies in the distribution package
+    * [OGM-374] - Javadoc not included in the distribution package
+
+
+4.0.0.Beta3 (26-09-2013)
+-------------------------
+
+** Sub-task
+    * [OGM-308] - Convert JP-QL to MongoDB queries and return managed object
+    * [OGM-312] - Add support for <, <=, >=, >, IN and LIKE operators
+    * [OGM-316] - Extract separate module for building distribution and JavaDoc
+    * [OGM-318] - Don't prepare JBoss AS for integration tests if tests are skipped
+
+** Bug
+    * [OGM-228] - Hibernate Search MassIndexer should work with OGM
+    * [OGM-233] - OGM is not polymorphic
+    * [OGM-254] - PersistentTableBulkIdStrategy.exportTableDefinitions() throws NullPointerException with OGM
+    * [OGM-256] - Add support for InheritanceType.TABLE_PER_CLASS
+    * [OGM-272] - Fix BasicGridExtractor logging message
+    * [OGM-281] - Checkstyle NewlineAtEndOfFile rule fails in windows
+    * [OGM-284] - Checkstyle not working in the integrationtest submodule
+    * [OGM-297] - MongoDBModuleMemberRegistrationIT does not honor MONGODB_HOSTNAME
+    * [OGM-300] - Make LoadSelectedColumnsCollectionTest run reliably on JDK 7
+
+** Improvement
+    * [OGM-45] - Rewrite OgmTestCase: broken in a few ways
+    * [OGM-151] - Reduce memory consumption by sharing the metadata information of Key objects
+    * [OGM-263] - Upgrade Shrinkwrap to version 1.1.1
+    * [OGM-270] - Expose the WriteConcern settings to the configuration
+    * [OGM-282] - Configuration parsing
+    * [OGM-288] - Mass indexing tests should not use the utility class in Search to create Index direcotries
+    * [OGM-299] - Use SessionFactoryServiceInitiator instead of sessionFactory.addObserver to inject SessionFactory in DatastoreProvider
+    * [OGM-301] - Set priority build order between integration tests and module projects using the modules tag instead of specify a dependency
+    * [OGM-319] - Update to Hibernate Search 4.4.0.Alpha1
+    * [OGM-320] - Update to HQL Parser 1.0.0.Alpha3
+    * [OGM-326] - Make JpaTestCase support @SkipByGridDialect
+    * [OGM-327] - Have only one Javassist dependency
+    * [OGM-330] - Add CheckStyle check for whitespaces after type casts
+
+** New Feature
+    * [OGM-271] - Create dedicated MongoDB module file for AS7
+    * [OGM-273] - Offer ability to load all entities of a given table from GridDialect
+
+** Task
+    * [OGM-259] - Upgrade to Hibernate Search 4.2.0.Final
+    * [OGM-261] - Document usage of the JBoss AS 7 modules package
+    * [OGM-267] - Upgrade MongoDB-java-driver version to 2.10.1
+    * [OGM-276] - Update integration tests to JBoss AS 7.2 alpha1
+    * [OGM-277] - Remove dependencies from integration test module
+    * [OGM-278] - MongoDB integration tests should be disabled when the profile is disabled
+    * [OGM-279] - We should use the checkstyle maven plugin to check coding convention during the build
+    * [OGM-280] - Checkstyle: Indentation should be performed wit tabs only
+    * [OGM-283] - Add checkstyle rule: RedundantModifier
+    * [OGM-286] - The integration test parent module should not have a resource folder
+    * [OGM-287] - Adapt to current version of parser project
+    * [OGM-289] - Update Hibernate Search, Ehcache and Infinispan dependency versions
+    * [OGM-295] - Facilitate project setup by using Embedded MongoDB
+    * [OGM-302] - Run checkstyle in the verification phase
+    * [OGM-315] - OneToOneTest does not completly clear the datastore when  the test is finished
+    * [OGM-329] - Convert documentation to asciidoc
+    * [OGM-339] - Integration test module should not be built when -DskipTests is specified
+
+
+4.0.0.Beta2 (14-01-2013)
+-------------------------
+
+** Improvement
+    * [OGM-253] - Upgrade to MongoDB driver 2.9.x
+
+** Task
+    * [OGM-204] - Stop skipping tests once Infinispan has fixed the AtomicMap bug not handling removals in size
+    * [OGM-250] - Update to Infinispan 5.2.0.Beta4
+    * [OGM-252] - Upgrade to Hibernate ORM 4.1.7
+    * [OGM-255] - Assemble as a JBoss Module during releases
+    * [OGM-257] - Update to Hibernate ORM 4.1.9.Final
+    * [OGM-258] - Upgrade to Infinispan 5.2.0.CR1
+    * [OGM-260] - Upgrade to Hibernate Search 4.2.0.CR1
+
+
+4.0.0.Beta1 (03-10-2012)
+-------------------------
+
+** Sub-task
+    * [OGM-89] - Convert OGM SessionObserver into an Integrator and/or BasicServiceInitiator
+    * [OGM-202] - Make TestHelper contract more flexible upon answering on the volume of entities / associations
+
+
+** Bug
+    * [OGM-81] - Build uses <scope> optional instead of optional=true
+    * [OGM-90] - Typo in Chapter 3.2
+    * [OGM-97] - Avoid looking up the specific Infinispan Cache at each operation
+    * [OGM-106] - Should not close Infinispan Caches retrieved via JNDI
+    * [OGM-108] - Make Hibernate OGM compile and run tests using JDK 7 (and JDK 6)
+    * [OGM-124] - Errors while starting Infinispan are hidden by a NPE stacktrace
+    * [OGM-134] - Fix logs in BasicGridBinder
+    * [OGM-146] - Intermittent test failures and JVM crashes
+    * [OGM-152] - TimeZone  Not Persisted
+    * [OGM-158] - Hibernate OGM is always activated (even when ORM is used) because OgmIntegrator is always called
+    * [OGM-160] - Invalid persistence unit configuration might result in NullPointerException
+    * [OGM-164] - When persistence provider is not specified the EMF creation taking a PersistenceUnitInfo defaults to OGM instead of plain ORM
+    * [OGM-170] - Make sure test framework drop schema and database in all cases and don't hide previous exceptions
+    * [OGM-174] - Composite id fail on MongoDB: MongoDBDialect only takes the first id column into account and force _id
+    * [OGM-179] - Consider whether or not it is fine to store the same id value in both the identifier column and _id in MongoDB
+    * [OGM-189] - BooleanProperty using instance comparison on strings
+    * [OGM-191] - Avoid writeskew check exceptions on Infinispan when no write skew happened
+    * [OGM-199] - Updates in MongoDBDialect should only use id columns as restriction
+    * [OGM-213] - Avoid storing reverse side association navigation info when association is not bidirectional
+    * [OGM-214] - Inappropriately create an empty association upon load by unique id if the info ins not present
+    * [OGM-216] - After transaction completion listeners invoked with wrong status code
+    * [OGM-217] - After transaction completion listeners invoked with wrong status code
+    * [OGM-223] - Make MongoDBDatastoreProvider raises proper contextual HibernateException upon connection issue
+    * [OGM-224] - Avoid disabling OGM as side-effect of OgmConfiguration#setProperties
+    * [OGM-227] - Documentation does not build on some locale and hangs otherwise
+    * [OGM-246] - Distribution does not contain JavaDoc
+
+** Improvement
+    * [OGM-40] - Make EntityKey use column names / values (not the id)
+    * [OGM-69] - Introduce a Tuple object instead of Map<String,Object> and the equivalent for the association info
+    * [OGM-73] - Log all operations to the datastore as a tool similar to show_sql or the logger equivalent (Sebastien Lorber)
+    * [OGM-77] - Store the reference documentation with its locale in the distribution
+    * [OGM-85] - Build RowKey in a faster way
+    * [OGM-91] - Typo in Chapter 4.3
+    * [OGM-93] - Upgrade to Hibernate Search 4.0.0.CR1
+    * [OGM-94] - JTATransactionManagerTransaction is using a new logger in each instance
+    * [OGM-95] - Performance improvement after profiling analysis
+    * [OGM-96] - Migrate to Infinispan 5.1
+    * [OGM-101] - Improve equals implementations of grid keys
+    * [OGM-102] - Use Infinispan's FineGrainedAtomicMap to reduce locking contention
+    * [OGM-103] - Configuration files need updates
+    * [OGM-111] - Log DatastoreProvider and GridDialect used at startup
+    * [OGM-113] - Improve efficiency of EntityKey, RowKey and Tuple
+    * [OGM-133] - Expose table, column names and column values from EntityKey, RowKey and AssociationKey
+    * [OGM-140] - Expose metamodel to DatastoreProvider
+    * [OGM-148] - support for more types in BuiltinTypeTest
+    * [OGM-149] - Make TupleOperation more debugger friendly by implementing toString()
+    * [OGM-154] - Speedup testsuite: EHCache and Infinispan tests are annoyingly slow in their setup phase
+    * [OGM-156] - Avoid using a table scan with MongoDB nextValue implementation
+    * [OGM-159] - Provide the list of column names to the Dialect for an entity and association operation
+    * [OGM-161] - Avoid the need to set the hibernate.dialect in configuration properties
+    * [OGM-163] - Implement a @SkipByGridDialect test helper annotation
+    * [OGM-168] - Rename AssociationType to AssociationKind
+    * [OGM-169] - configurable where/how associations are stored in MongoDB dialect
+    * [OGM-172] - Create indexes for identifier columns that are not '_id' in mongodb datastore
+    * [OGM-173] - Only load the necessary properties from MongoDB
+    * [OGM-178] - Provide RowKey metadata in AssociationKey and fix various bugs in RowKey columns for associations
+    * [OGM-180] - Make MongoDB safe option defaults true in Hibernate OGM
+    * [OGM-183] - upgrade to ORM 4.1.3.Final
+    * [OGM-184] - Enable automatic setup of annotation processors on Eclipse project import
+    * [OGM-185] - Enable automatic setup of annotation processors on Eclipse project import
+    * [OGM-195] - Harmonize toString implementation of EntityKey, AssociationKey and RowKey
+    * [OGM-201] - Offer shortcuts for datastore providers
+    * [OGM-209] - Migrate MongoDB Driver to 2.8
+    * [OGM-211] - Limit redundancy when storing association information in a non embedded way
+    * [OGM-221] - Avoid table scan on all MongoDB operations
+    * [OGM-222] - Support authentication (username / password)
+    * [OGM-229] - Beef up documentation around MongoDB datastore
+    * [OGM-236] - Switch the default association storage mode in MongoDB from COLLECTION to IN_ENTITY
+    * [OGM-240] - Rename MapBasedDatastoreProvider to MapDatastoreProvider
+    * [OGM-244] - Document Ehcache configuration options
+
+** New Feature
+    * [OGM-19] - Implement Referencable#getReference in OgmSessionFactory (Davide D'Alto)
+    * [OGM-22] - Support Session#createQuery(String) and JP-QL queries
+    * [OGM-33] - Implement JPA SEQUENCE generated value strategy for a grid (Nabeel Ali Memon)
+    * [OGM-34] - Implement JPA AUTO generated value strategy for a grid (Nabeel Ali Memon)
+    * [OGM-35] - Implement JPA IDENTITY generated value strategy for a grid (Nabeel Ali Memon)
+    * [OGM-79] - Abstract GridDialect from Infinispan's Cache API
+    * [OGM-80] - Simplify OGM configuration when Hibernate Core Native APIs are used and wrap into OGMSession* (Davide D'Alto)
+    * [OGM-88] - Move to Hibernate Core 4
+    * [OGM-115] - Add hibernate-ogm-ehcache
+    * [OGM-132] - Support MongoDB as datastore (Guillaume Scheibel)
+    * [OGM-141] - Expose in AssociationKey means to embed collections (of embeddable)
+    * [OGM-142] - Let dialects override the mapping between a java type and it's corresponding grid type
+    * [OGM-143] - Implement dialect.nextValue in MongoDB
+    * [OGM-144] - Support associations in MongoDB (Alan Fitton)
+    * [OGM-147] - Update project documentation with the mongodb implementation
+    * [OGM-165] - Add support for the SafeMode
+    * [OGM-176] - Embed @ElementCollection within the entity owning the collection
+    * [OGM-177] - Make true associations be stored in the entity document in MongoDB
+
+** Task
+    * [OGM-20] - Integrate the JP-QL to HSQuery / Lucene module
+    * [OGM-86] - Update to Hibernate Core version 3.6.6
+    * [OGM-87] - Update to Infinispan version 5.0.0.FINAL
+    * [OGM-99] - JPAResourceLocalStandaloneTest might leak transactions on failures
+    * [OGM-100] - Upgrade JBoss Logging dependencies to 3.1.0.Beta3
+    * [OGM-109] - Upgrade JBoss Logging dependencies to 3.1.0.CR1
+    * [OGM-110] - Split Infinispan integration in a secondary module
+    * [OGM-116] - Upgrade core dependencies
+    * [OGM-121] - Update components to match JBoss AS 7.1.0.Final
+    * [OGM-125] - Avoid usage of deprecated configuration methods in Infinispan
+    * [OGM-135] - Refresh documentation for next release
+    * [OGM-136] - Update architecture schema to reflect DatastoreProvider and GridDialect
+    * [OGM-137] - Have dependency version numbers mentioned in documentation defined by root pom.xml
+    * [OGM-139] - Tests should cleanup the stored state as well
+    * [OGM-155] - change to use org.javassist:javassist:3.15.0-GA
+    * [OGM-162] - Have an option to build the project without requiring a running MongoDB instance
+    * [OGM-166] - Add parameters to build to override MongoDB instance used for tests
+    * [OGM-192] - Update to Hibernate ORM version 4.1.4.Final
+    * [OGM-196] - Update JBoss Logging to 3.1.1.GA
+    * [OGM-205] - Use the inverse side association name instead of the association table when it exists
+    * [OGM-210] - Set a larger timeout on transactions to ease debugging sessions
+    * [OGM-220] - Use .gitattributes to set Java style diffs and enforce proper line endings
+    * [OGM-237] - Review assembly definition to include the new modules in the release distribution
+    * [OGM-238] - Update to Infinispan 5.1.7.Final
+    * [OGM-239] - Update to Hibernate Search 4.2.0.Beta1
+    * [OGM-241] - Depend on Hibernate-JPQL Parser 1.0.0.Alpha1
+    * [OGM-247] - Resolve javadoc warnings
+
+
+3.0.0.Alpha2 (16-06-2011)
+-------------------------
+
+** Sub-task
+    * [OGM-66] - Add a Test to enforce String mapped types as string in storage
+
+** Bug
+    * [OGM-31] - ConcurrentModificationException on ArrayList representing the collection
+    * [OGM-59] - Getting Started - Code doesn't compiles and missing maven dependencies
+    * [OGM-68] - Inverse side of a @ManyToMany does not get populated on object load
+
+
+** Improvement
+    * [OGM-32] - Make use of AtomicMap instead of Map for tuples
+    * [OGM-62] - Getting Started - Infinispan doesn't needs to be explicitly added to the maven dependencies
+
+** New Feature
+    * [OGM-12] - Support more GridTypes
+    * [OGM-50] - Write simple reference documentation
+    * [OGM-56] - Make OGM work on explicit Hibernate Transaction demarcation
+    * [OGM-60] - Provide a full implementation of the Getting Started
+    * [OGM-61] - Support UUID type
+    * [OGM-76] - Upgrade various dependency versions
+
+** Task
+    * [OGM-64] - Move dependency to Hibernate Core 3.6.4.Final
+
+
+3.0.0.Alpha1 (29-04-2011)
+-------------------------
+
+Initial release
+

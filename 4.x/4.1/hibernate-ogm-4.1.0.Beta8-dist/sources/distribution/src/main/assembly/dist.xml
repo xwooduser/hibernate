@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ ~ Hibernate OGM, Domain model persistence for NoSQL datastores
+ ~
+ ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later
+ ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+
+<!--
+  When updating this file, make sure we don't include duplicate jars in different subdirectories.
+  Generate the distribution preview to see how it looks like:
+   mvn clean package -DskipDistro=false -DskipTests=true -DskipITs=true
+
+  To inspect which jars are being distributed and look for duplicates this might be handy:
+  tar -ztvf target/*-dist.tar.gz | grep .jar| sed -e "s/.*\/dist//" -e "s/\(\/lib\/[^\/]*\)\/\(.*\)/\2 \t\t\t\1/" | sort
+ -->
+<assembly>
+    <id>dist</id>
+    <formats>
+        <format>tar.gz</format>
+        <format>zip</format>
+    </formats>
+
+    <!-- Configure the module artifacts which make it into the distribution bundle -->
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-core</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <outputDirectory>/dist/lib/required</outputDirectory>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>org.hibernate.common:hibernate-commons-annotations</include>
+                            <include>antlr:antlr</include>
+                            <include>org.antlr:antlr-runtime</include>
+                            <include>org.antlr:stringtemplate</include>
+                            <include>org.apache.avro:avro</include>
+                            <include>dom4j:dom4j</include>
+                            <include>org.hibernate:hibernate-core</include>
+                            <include>org.hibernate:hibernate-entitymanager</include>
+                            <include>org.hibernate.hql:hibernate-hql-lucene</include>
+                            <include>org.hibernate.hql:hibernate-hql-parser</include>
+                            <include>org.hibernate:hibernate-search-engine</include>
+                            <include>org.hibernate:hibernate-search-orm</include>
+                            <include>org.codehaus.jackson:jackson-core-asl</include>
+                            <include>org.codehaus.jackson:jackson-mapper-asl</include>
+                            <include>org.javassist:javassist</include>
+                            <include>org.jboss.logging:jboss-logging</include>
+                            <include>org.jboss.logging:jboss-logging-annotations</include>
+                            <include>org.apache.lucene:lucene-core</include>
+                            <include>org.apache.lucene:lucene-facet</include>
+                            <include>com.thoughtworks.paranamer:paranamer</include>
+                            <include>org.slf4j:slf4j-api</include>
+                            <include>org.antlr:stringtemplate</include>
+                            <include>org.jgroups:jgroups</include>
+
+                            <!-- Parboiled and deps -->
+                            <include>org.parboiled:parboiled-java</include>
+                            <include>org.parboiled:parboiled-core</include>
+                            <include>org.ow2.asm:asm</include>
+                            <include>org.ow2.asm:asm-tree</include>
+                            <include>org.ow2.asm:asm-analysis</include>
+                            <include>org.ow2.asm:asm-util</include>
+                        </includes>
+                    </dependencySet>
+                    <dependencySet>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <outputDirectory>/dist/lib/provided</outputDirectory>
+                        <scope>provided</scope>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  hibernate-ogm-infinispan
+        #######################################################################
+         -->
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-infinispan</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist/lib/infinispan</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>/dist/lib/infinispan</outputDirectory>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>org.infinispan:infinispan-commons</include>
+                            <include>org.infinispan:infinispan-core</include>
+                            <include>org.jboss.marshalling:jboss-marshalling</include>
+                            <include>org.jboss.marshalling:jboss-marshalling-river</include>
+                        </includes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  hibernate-ogm-ehcache
+        #######################################################################
+         -->
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-ehcache</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist/lib/ehcache</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>/dist/lib/ehcache</outputDirectory>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>net.sf.ehcache:ehcache-core</include>
+                        </includes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  hibernate-ogm-mongodb
+        #######################################################################
+         -->
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-mongodb</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist/lib/mongodb</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>/dist/lib/mongodb</outputDirectory>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>org.mongodb:mongo-java-driver</include>
+                        </includes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  hibernate-ogm-neo4j
+        #######################################################################
+         -->
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-neo4j</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist/lib/neo4j</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>/dist/lib/neo4j</outputDirectory>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru</include>
+                            <include>org.neo4j:neo4j</include>
+                            <include>org.neo4j:neo4j-cypher</include>
+                            <include>org.neo4j:neo4j-graph-algo</include>
+                            <include>org.neo4j:neo4j-graph-matching</include>
+                            <include>org.neo4j:neo4j-jmx</include>
+                            <include>org.neo4j:neo4j-kernel</include>
+                            <include>org.neo4j:neo4j-lucene-index</include>
+                            <include>org.neo4j:neo4j-udc</include>
+                            <include>org.neo4j:neo4j-cypher-commons</include>
+                            <include>org.neo4j:neo4j-cypher-compiler-1.9</include>
+                            <include>org.neo4j:neo4j-cypher-compiler-2.0</include>
+                            <include>org.neo4j:neo4j-cypher-compiler-2.1</include>
+                            <include>org.scala-lang:scala-library</include>
+                            <include>org.parboiled:parboiled-scala_2.10</include>
+                        </includes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  hibernate-ogm-couchdb
+        #######################################################################
+         -->
+
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-couchdb</include>
+            </includes>
+            <binaries>
+                <outputDirectory>dist/lib/couchdb</outputDirectory>
+                <unpack>false</unpack>
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>/dist/lib/couchdb</outputDirectory>
+                        <useProjectArtifact>false</useProjectArtifact>
+                        <scope>runtime</scope>
+                        <includes>
+                            <include>org.jboss.resteasy:resteasy-client</include>
+                            <include>org.jboss.resteasy:resteasy-jackson2-provider</include>
+                            <include>org.jboss.resteasy:resteasy-jaxrs</include>
+                            <include>org.jboss.resteasy:jaxrs-api</include>
+                            <include>org.scannotation:scannotation</include>
+                            <include>org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec</include>
+                            <include>javax.activation:activation</include>
+                            <include>org.apache.httpcomponents:httpclient</include>
+                            <include>org.apache.httpcomponents:httpcore</include>
+                            <include>commons-logging:commons-logging</include>
+                            <include>commons-codec:commons-codec</include>
+                            <include>commons-io:commons-io</include>
+                            <include>net.jcip:jcip-annotations</include>
+                            <include>com.fasterxml.jackson.core:jackson-core</include>
+                            <include>com.fasterxml.jackson.core:jackson-databind</include>
+                            <include>com.fasterxml.jackson.core:jackson-annotations</include>
+                        </includes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+
+        <!--
+        #######################################################################
+        #  API Javadoc
+        #######################################################################
+         -->
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>org.hibernate.ogm:hibernate-ogm-javadoc</include>
+            </includes>
+            <sources>
+                <includeModuleDirectory>false</includeModuleDirectory>
+                <fileSets>
+                    <fileSet>
+                        <directory>target/site/apidocs</directory>
+                        <outputDirectory>docs/api</outputDirectory>
+                    </fileSet>
+                </fileSets>
+            </sources>
+        </moduleSet>
+
+    </moduleSets>
+
+    <files>
+        <file>
+            <source>../readme.md</source>
+            <outputDirectory>/</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>../license.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>../changelog.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+    </files>
+
+    <fileSets>
+        <!-- Include all sources -->
+        <fileSet>
+            <directory>../.</directory>
+            <outputDirectory>sources</outputDirectory>
+            <useDefaultExcludes>true</useDefaultExcludes>
+            <excludes>
+                <exclude>../readme.md</exclude>
+                <exclude>../license.txt</exclude>
+                <exclude>../changelog.txt</exclude>
+                <exclude>../*.sh</exclude>
+                <exclude>**/.git/**</exclude>
+                <exclude>**/.gitignore</exclude>
+                <exclude>**/.gitattributes</exclude>
+                <exclude>**/.bin/**</exclude>
+                <exclude>**/.settings/**</exclude>
+                <exclude>**/.project</exclude>
+                <exclude>**/.classpath</exclude>
+                <exclude>**/.factorypath</exclude>
+                <exclude>**/bin/**</exclude>
+                <exclude>**/.externalToolBuilders/**</exclude>
+                <exclude>**/target/**</exclude>
+                <exclude>**/.idea/**</exclude>
+                <exclude>**/*.iml</exclude>
+                <exclude>**/*.log</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>../documentation/manual/target/docbook/publish</directory>
+            <outputDirectory>docs/reference</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <!--
+    #######################################################################
+    #  Optional dependencies of hibernate-ogm-infinispan
+    #######################################################################
+     -->
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>dist/lib/infinispan</outputDirectory>
+            <useTransitiveFiltering>false</useTransitiveFiltering>
+            <unpack>false</unpack>
+            <includes>
+                <include>org.infinispan:infinispan-lucene-directory</include>
+                <include>org.hibernate:hibernate-search-infinispan</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~ Hibernate OGM, Domain model persistence for NoSQL datastores
+ ~
+ ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later
+ ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+
+<!--
+    This is the testing configuration, running in LOCAL clustering mode to speedup tests.
+    Not all tests use this, so that at least one still validates the configuration
+    validity which would be shipped with a release (like JPAStandaloneTest).
+-->
+<infinispan
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:infinispan:config:6.0 http://www.infinispan.org/schemas/infinispan-config-6.0.xsd"
+    xmlns="urn:infinispan:config:6.0">
+
+    <global>
+        <globalJmxStatistics
+            enabled="false"
+            cacheManagerName="HibernateOGM-Testsuite"
+            allowDuplicateDomains="true" />
+    </global>
+
+    <!-- *************************** -->
+    <!--   Default cache settings    -->
+    <!-- *************************** -->
+
+    <default>
+        <transaction
+            transactionMode="TRANSACTIONAL"
+            transactionManagerLookupClass="org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup" />
+        <expiration
+            wakeUpInterval="-1"
+            reaperEnabled="false" />
+    </default>
+
+    <!-- *************************************** -->
+    <!--     Cache to store the OGM entities     -->
+    <!-- *************************************** -->
+    <namedCache
+        name="ENTITIES">
+    </namedCache>
+
+    <!-- *********************************************** -->
+    <!--   Cache to store the relations across entities  -->
+    <!-- *********************************************** -->
+    <namedCache
+        name="ASSOCIATIONS">
+    </namedCache>
+
+    <!-- ***************************** -->
+    <!--   Cache to store identifiers  -->
+    <!-- ***************************** -->
+    <namedCache
+        name="IDENTIFIERS">
+    </namedCache>
+
+</infinispan>
